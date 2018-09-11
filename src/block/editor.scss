@@ -1,0 +1,50 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+.wp-block-cgb-block-simple-metabox  {
+  background: $green;
+  border: 0.2rem solid $black;
+  color: $black;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem;
+}
+
+#book-metadata {
+  .book-author label,
+  .book-synopsis label,
+  .book-publisher label,
+  .book-language label,
+  .book-year label {
+    font-weight: bold;
+    display: block;
+    color:#5e740b;
+  }
+
+  .book-author,
+  .book-synopsis,
+  .book-publisher,
+  .book-language,
+  .book-year {
+    margin-top: 1.2em;
+  }
+
+  h3 {
+    line-height: 2em;
+    color: #1d5d90;
+    border-bottom: 1px solid #7e8993;
+  }
+
+  textarea {
+    padding: 6px;
+    border: 1px solid #7e8993;
+    border-radius: 5px;
+    -mozilla-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: $black;
+  }
+}

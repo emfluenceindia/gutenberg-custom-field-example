@@ -1,0 +1,48 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-cgb-block-simple-metabox {
+  background: #bada55;
+  border: 0.2rem solid #292929;
+  color: #292929;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem; }
+
+#book-metadata .book-author label,
+#book-metadata .book-synopsis label,
+#book-metadata .book-publisher label,
+#book-metadata .book-language label,
+#book-metadata .book-year label {
+  font-weight: bold;
+  display: block;
+  color: #5e740b; }
+
+#book-metadata .book-author,
+#book-metadata .book-synopsis,
+#book-metadata .book-publisher,
+#book-metadata .book-language,
+#book-metadata .book-year {
+  margin-top: 1.2em; }
+
+#book-metadata h3 {
+  line-height: 2em;
+  color: #1d5d90;
+  border-bottom: 1px solid #7e8993; }
+
+#book-metadata textarea {
+  padding: 6px;
+  border: 1px solid #7e8993;
+  border-radius: 5px;
+  -mozilla-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  color: #292929; }
