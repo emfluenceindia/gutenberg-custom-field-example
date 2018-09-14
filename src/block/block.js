@@ -11,7 +11,20 @@ import './editor.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { PlainText } = wp.editor;
+const {
+	PlainText,
+    InspectorControls,
+    BlockControls,
+} = wp.editor;
+const {
+    PanelBody,
+    TextareaControl,
+    TextControl,
+    Dashicon,
+    Toolbar,
+    Button,
+    Tooltip,
+} = wp.components;
 
 registerBlockType( 'book-list/book-metadata-block', {
 	title: __( 'Book Metadata Example' ),
@@ -50,6 +63,10 @@ registerBlockType( 'book-list/book-metadata-block', {
 	},
 	edit: function( props ) {
 		function onAuthorChange( thisValue ) {
+			if( '' === thisValue ) {
+				alert( 'Author name is empty ');
+				return;
+			}
 			props.setAttributes( { author: thisValue } );
 		}
 
@@ -71,6 +88,18 @@ registerBlockType( 'book-list/book-metadata-block', {
 
 		return(
 			<div id="book-metadata">
+
+                <InspectorControls key="inspector">
+                    <PanelBody title={ __('More Info') }>
+                        <TextareaControl
+                            label={ __( 'Additional information about the book' ) }
+                        />
+                        <TextControl
+                            label={ __( 'Something or anything' ) }
+                        />
+                    </PanelBody>
+                </InspectorControls>
+
 				<h3>Book metadata</h3>
 				<div className="book-author">
 					<label>Book Author</label>

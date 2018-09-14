@@ -131,3 +131,8 @@ function sar_register_book_cpt() {
 }
 
 add_action( 'init', 'sar_register_book_cpt' );
+
+
+/**
+ * Blocktype whitelisting
+ */
