@@ -27,7 +27,7 @@ const {
 } = wp.components;
 
 registerBlockType( 'book-list/book-metadata-block', {
-	title: __( 'Book Metadata Example' ),
+	title: __( 'About Book' ),
 	icon: 'book',
 	category: 'common',
 	keywords: [
@@ -60,6 +60,24 @@ registerBlockType( 'book-list/book-metadata-block', {
 			source: 'meta',
 			meta: 'book_year',
 		},
+
+		price: {
+			type: 'string',
+			source: 'meta',
+			meta: 'book_price',
+		},
+
+		discount: {
+			type: 'string',
+			source: 'meta',
+			meta: 'book_discount',
+		},
+
+		pages: {
+			type: 'string',
+			source: 'meta',
+			meta: 'book_pages',
+		}
 	},
 	edit: function( props ) {
 		function onAuthorChange( thisValue ) {
@@ -86,23 +104,71 @@ registerBlockType( 'book-list/book-metadata-block', {
 			props.setAttributes( { pub_year: thisValue } );
 		}
 
+		function onPriceChange( thisValue ) {
+			props.setAttributes( { price: thisValue } );
+		}
+
+		function onDiscountChange( thisValue ) {
+			props.setAttributes( { discount: thisValue } );
+		}
+
+		function onPagesChange( thisValue ) {
+			props.setAttributes( { pages: thisValue } );
+		}
+
 		return(
 			<div id="book-metadata">
 
                 <InspectorControls key="inspector">
-                    <PanelBody title={ __('More Info') }>
-                        <TextareaControl
-                            label={ __( 'Additional information about the book' ) }
+                    <PanelBody title={ __('Pricing') }>
+                        <TextControl
+                            label={ __( 'Printed Price' ) }
+							placeholder={ __( 'Original Price' ) }
+							value={ props.attributes.price }
+							onChange={ onPriceChange }
+							maxlength="15"
                         />
                         <TextControl
-                            label={ __( 'Something or anything' ) }
+                            label={ __( 'Discount (%)' ) }
+							placeholder={ __( 'Discount in percent' ) }
+							value={ props.attributes.discount }
+							onChange={ onDiscountChange }
+							maxlength="6"
+                        />
+                    </PanelBody>
+                    <PanelBody title={ __('Publication') }>
+                        <TextControl
+                            label={ __( 'Publisher' ) }
+                            value={ props.attributes.publisher }
+                            onChange={ onPublisherChange }
+                            maxlength="35"
+                        />
+                        <TextControl
+                            label={ __( 'Year of Publication' ) }
+                            value={ props.attributes.pub_year }
+                            onChange={ onYearChange }
+                            maxlength="4"
+                        />
+                    </PanelBody>
+                    <PanelBody title={ __('Language and others') }>
+                        <TextControl
+                            label={ __( 'Language' ) }
+                            value={ props.attributes.language }
+                            onChange={ onLanguageChange }
+                            maxlength="35"
+                        />
+                        <TextControl
+                            label={ __( 'No. of Pages' ) }
+							value={ props.attributes.pages }
+							onChange={ onPagesChange }
+							maxlength="4"
                         />
                     </PanelBody>
                 </InspectorControls>
 
-				<h3>Book metadata</h3>
+				<h3>About the book</h3>
 				<div className="book-author">
-					<label>Book Author</label>
+					<label>Author</label>
 					<PlainText
 						placeholder={ __( 'Book author' ) }
 						value={ props.attributes.author || '' }
@@ -111,42 +177,15 @@ registerBlockType( 'book-list/book-metadata-block', {
 					/>
 				</div>
                 <div className="book-synopsis">
-                    <label>Synopsis</label>
+                    <label>Brief</label>
                     <PlainText
-                        placeholder={ __( 'Synopsis' ) }
+                        placeholder={ __( 'A brief about this book within 1000 characters' ) }
                         value={ props.attributes.synopsis || '' }
                         onChange={ onSynopsisChange }
 						aria-multiline="true"
 						rows="6"
 						columns="30"
-                        maxlength="250"
-                    />
-                </div>
-                <div className="book-publisher">
-                    <label>Publisher</label>
-                    <PlainText
-                        placeholder={ __( 'Publisher' ) }
-                        value={ props.attributes.publisher || '' }
-                        onChange={ onPublisherChange }
-                        maxlength="50"
-                    />
-                </div>
-                <div className="book-language">
-                    <label>Language</label>
-                    <PlainText
-                        placeholder={ __( 'Language' ) }
-                        value={ props.attributes.language || '' }
-                        onChange={ onLanguageChange }
-                        maxlength="50"
-                    />
-                </div>
-                <div className="book-year">
-                    <label>Year of publication</label>
-                    <PlainText
-                        placeholder={ __( 'Year of publication' ) }
-                        value={ props.attributes.pub_year || '' }
-                        onChange={ onYearChange }
-                        maxlength="4"
+                        maxlength="1000"
                     />
                 </div>
 			</div>

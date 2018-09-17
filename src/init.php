@@ -97,6 +97,24 @@ function sar_book_meta() {
 		'type'         => 'string',
 		'single'       => true,
 	) );
+
+	register_meta( 'post', 'book_price', array(
+		'show_in_rest' => true,
+		'type'         => 'string',
+		'single'       => true,
+	) );
+
+	register_meta( 'post', 'book_discount', array(
+		'show_in_rest' => true,
+		'type'         => 'string',
+		'single'       => true,
+	) );
+
+	register_meta( 'post', 'book_pages', array(
+		'show_in_rest' => true,
+		'type'         => 'string',
+		'single'       => true,
+	) );
 }
 
 add_action( 'init', 'sar_book_meta' );
@@ -116,6 +134,11 @@ function sar_register_book_cpt() {
 		'label'              => __( 'Books' ),
 		'labels'             => $labels,
 		'show_in_rest'       => true,
+		'template' => array(
+			array( 'book-list/book-metadata-block', array(
+				'align' => 'left',
+			) ),
+		),
 		'has_archive'        => true,
 		'public'             => true,
 		'supports'           => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
