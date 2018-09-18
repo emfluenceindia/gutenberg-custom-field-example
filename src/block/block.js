@@ -81,10 +81,6 @@ registerBlockType( 'book-list/book-metadata-block', {
 	},
 	edit: function( props ) {
 		function onAuthorChange( thisValue ) {
-			if( '' === thisValue ) {
-				alert( 'Author name is empty ');
-				return;
-			}
 			props.setAttributes( { author: thisValue } );
 		}
 
@@ -116,6 +112,18 @@ registerBlockType( 'book-list/book-metadata-block', {
 			props.setAttributes( { pages: thisValue } );
 		}
 
+		function onAuthorBlur() {
+			if( '' === props.attributes.author ) {
+                alert( 'Author name cannot be empty');
+            }
+		}
+
+		function onPriceBlur() {
+			if( '' === props.attributes.price ) {
+				alert( 'Price cannot be empty' );
+			}
+		}
+
 		return(
 			<div id="book-metadata">
 
@@ -126,14 +134,15 @@ registerBlockType( 'book-list/book-metadata-block', {
 							placeholder={ __( 'Original Price' ) }
 							value={ props.attributes.price }
 							onChange={ onPriceChange }
-							maxlength="15"
+							onBlur={ onPriceBlur }
+							maxLength="15"
                         />
                         <TextControl
                             label={ __( 'Discount (%)' ) }
 							placeholder={ __( 'Discount in percent' ) }
 							value={ props.attributes.discount }
 							onChange={ onDiscountChange }
-							maxlength="6"
+							maxLength="6"
                         />
                     </PanelBody>
                     <PanelBody title={ __('Publication') }>
@@ -141,13 +150,13 @@ registerBlockType( 'book-list/book-metadata-block', {
                             label={ __( 'Publisher' ) }
                             value={ props.attributes.publisher }
                             onChange={ onPublisherChange }
-                            maxlength="35"
+                            maxLength="35"
                         />
                         <TextControl
                             label={ __( 'Year of Publication' ) }
                             value={ props.attributes.pub_year }
                             onChange={ onYearChange }
-                            maxlength="4"
+                            maxLength="4"
                         />
                     </PanelBody>
                     <PanelBody title={ __('Language and others') }>
@@ -155,13 +164,13 @@ registerBlockType( 'book-list/book-metadata-block', {
                             label={ __( 'Language' ) }
                             value={ props.attributes.language }
                             onChange={ onLanguageChange }
-                            maxlength="35"
+                            maxLength="35"
                         />
                         <TextControl
                             label={ __( 'No. of Pages' ) }
 							value={ props.attributes.pages }
 							onChange={ onPagesChange }
-							maxlength="4"
+							maxLength="4"
                         />
                     </PanelBody>
                 </InspectorControls>
@@ -173,7 +182,8 @@ registerBlockType( 'book-list/book-metadata-block', {
 						placeholder={ __( 'Book author' ) }
 						value={ props.attributes.author || '' }
 						onChange={ onAuthorChange }
-						maxlength="50"
+						onBlur={ onAuthorBlur }
+						maxLength="50"
 					/>
 				</div>
                 <div className="book-synopsis">
@@ -185,7 +195,7 @@ registerBlockType( 'book-list/book-metadata-block', {
 						aria-multiline="true"
 						rows="6"
 						columns="30"
-                        maxlength="1000"
+                        maxLength="1000"
                     />
                 </div>
 			</div>
